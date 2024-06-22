@@ -2,6 +2,8 @@ package org.m0skit0.android.mondlycodetask.data
 
 
 import com.squareup.moshi.Json
+import org.m0skit0.android.mondlycodetask.utils.Id
+import org.m0skit0.android.mondlycodetask.utils.Url
 
 data class ItemsDTO(
     @Json(name = "dataCollection")
@@ -15,7 +17,7 @@ data class ItemsDTO(
             @Json(name = "attributes")
             val attributes: AttributesDTO = AttributesDTO(),
             @Json(name = "id")
-            val id: String = ""
+            val id: Id = ""
         ) {
             data class AttributesDTO(
                 @Json(name = "description")
@@ -27,7 +29,7 @@ data class ItemsDTO(
             ) {
                 data class ImageInfoDTO(
                     @Json(name = "imageUrl")
-                    val imageUrl: String = ""
+                    val imageUrl: Url = ""
                 )
             }
         }
