@@ -7,6 +7,9 @@ import org.koin.core.context.startKoin
 fun Context.initializeKoin() {
     startKoin {
         androidContext(this@initializeKoin.applicationContext)
-        modules(dataModule)
+        modules(
+            dataModule,
+            domainModule,
+        )
     }
 }

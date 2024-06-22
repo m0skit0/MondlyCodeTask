@@ -1,4 +1,4 @@
-package org.m0skit0.android.mondlycodetask.ui.theme
+package org.m0skit0.android.mondlycodetask.presentation.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
