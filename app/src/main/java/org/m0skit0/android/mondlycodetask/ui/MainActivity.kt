@@ -1,4 +1,4 @@
-package org.m0skit0.android.mondlycodetask
+package org.m0skit0.android.mondlycodetask.ui
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
