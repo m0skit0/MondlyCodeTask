@@ -61,6 +61,8 @@ dependencies {
     implementation(libs.androidx.material3)
     implementation(libs.moshi)
     implementation(libs.moshi.kotlin)
+    implementation(libs.retrofit)
+    implementation(libs.retrofit.moshi)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
