@@ -1,22 +1,22 @@
 package org.m0skit0.android.mondlycodetask.domain
 
-import org.m0skit0.android.mondlycodetask.data.ItemsDTO
 import org.m0skit0.android.mondlycodetask.data.ItemsService
 
 interface ItemsRepository {
-    suspend fun items(): List<ItemsDTO>
+    suspend fun items(): List<Item>
 }
 
 class ItemsRepositoryImpl(
     private val itemsService: ItemsService,
+    private val domainItemMapper: DomainItemMapper,
 ) : ItemsRepository {
 
     // Trivial caching mechanism to avoid multiple network calls
-    private var cachedItems: List<ItemsDTO> = emptyList()
+    private var cachedItems: List<Item> = emptyList()
 
-    override suspend fun items(): List<ItemsDTO> {
+    override suspend fun items(): List<Item> {
         if (cachedItems.isEmpty()) {
-            cachedItems = itemsService.items()
+            cachedItems = domainItemMapper.map(itemsService.items())
         }
         return cachedItems
     }
