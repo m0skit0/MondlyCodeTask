@@ -3,7 +3,7 @@ package org.m0skit0.android.mondlycodetask.domain
 import org.m0skit0.android.mondlycodetask.data.ItemsService
 
 interface ItemsRepository {
-    suspend fun items(): List<Item>
+    suspend fun items(): Result<List<Item>>
 }
 
 class ItemsRepositoryImpl(
@@ -14,10 +14,11 @@ class ItemsRepositoryImpl(
     // Trivial caching mechanism to avoid multiple network calls
     private var cachedItems: List<Item> = emptyList()
 
-    override suspend fun items(): List<Item> {
+    override suspend fun items(): Result<List<Item>> = runCatching {
         if (cachedItems.isEmpty()) {
-            cachedItems = domainItemMapper.map(itemsService.items())
+            val items = itemsService.items()
+            cachedItems = domainItemMapper.map(items)
         }
-        return cachedItems
+        cachedItems
     }
 }
