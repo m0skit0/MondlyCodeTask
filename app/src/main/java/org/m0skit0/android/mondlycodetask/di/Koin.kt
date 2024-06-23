@@ -10,6 +10,7 @@ fun Context.initializeKoin() {
         modules(
             dataModule,
             domainModule,
+            presentationModule,
         )
     }
 }
