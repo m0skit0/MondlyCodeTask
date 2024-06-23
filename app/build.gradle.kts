@@ -61,8 +61,8 @@ dependencies {
     implementation(libs.androidx.material3)
     implementation(libs.moshi.kotlin)
     implementation(libs.retrofit.moshi)
-    implementation(libs.koin.androidx)
-    implementation(libs.koin.androidx.compose)
+    implementation(libs.koin.android)
+    implementation(libs.koin.compose)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
