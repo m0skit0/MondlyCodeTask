@@ -1,5 +1,6 @@
 package org.m0skit0.android.mondlycodetask.di
 
+import com.squareup.moshi.Json
 import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.adapter
@@ -14,7 +15,6 @@ import retrofit2.create
 
 private val BASE_URL = "https://europe-west1-mondly-workflows.cloudfunctions.net"
 
-@OptIn(ExperimentalStdlibApi::class)
 val dataModule = module {
 
     single<JsonAdapter.Factory> {
@@ -27,12 +27,8 @@ val dataModule = module {
              .build()
     }
 
-    single<JsonAdapter<ItemsDTO>> {
-        get<Moshi>().adapter()
-    }
-
     single<Converter.Factory> {
-        MoshiConverterFactory.create()
+        MoshiConverterFactory.create(get())
     }
 
     single {
