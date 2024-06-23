@@ -1,6 +1,5 @@
 package org.m0skit0.android.mondlycodetask.di
 
-import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.module
 import org.m0skit0.android.mondlycodetask.domain.DomainItemMapper
 import org.m0skit0.android.mondlycodetask.domain.DomainItemMapperImpl
