@@ -1,10 +1,13 @@
 package org.m0skit0.android.mondlycodetask.presentation
 
+import android.icu.text.IDNA
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.CircularProgressIndicator
@@ -32,19 +35,17 @@ fun MainItemListComposable(
         when (val uiState = state.value) {
             is UiState.Loading -> Loading()
             is UiState.Success -> ItemListComposable(items = uiState.data)
-            is UiState.Error -> Text(text = "Error: ${uiState.message}")
+            is UiState.Error -> Error(uiState)
         }
     }
 }
 
 @Composable
 private fun ItemListComposable(items: List<Item>) {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .verticalScroll(rememberScrollState()),
+    LazyColumn(
+        modifier = Modifier.fillMaxSize()
     ) {
-        items.forEach { item ->
+        itemsIndexed(items) { index, item ->
             ItemComposable(item)
         }
     }
@@ -96,4 +97,9 @@ private fun ItemComposablePreview() {
 @Composable
 private fun Loading() {
     CircularProgressIndicator()
+}
+
+@Composable
+private fun Error(error: UiState.Error) {
+    Text(text = "Error: ${error.message}")
 }
