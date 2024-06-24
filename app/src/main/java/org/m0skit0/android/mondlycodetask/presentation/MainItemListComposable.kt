@@ -1,6 +1,7 @@
 package org.m0skit0.android.mondlycodetask.presentation
 
 import android.icu.text.IDNA
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -43,7 +44,8 @@ fun MainItemListComposable(
 @Composable
 private fun ItemListComposable(items: List<Item>) {
     LazyColumn(
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.spacedBy(8.dp),
     ) {
         itemsIndexed(items) { index, item ->
             ItemComposable(item)
@@ -74,7 +76,10 @@ private fun ItemListComposablePreview() {
 
 @Composable
 private fun ItemComposable(item: Item) {
-    Row {
+    Row(
+        modifier = Modifier.fillMaxSize().padding(8.dp),
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
         Text(text = item.name)
         Text(text = item.description)
         Text(text = item.imageUrl)
